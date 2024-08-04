@@ -27,7 +27,7 @@ interface MessageData {
 export default function Preview() {
 
 	const {
-		files
+		files,
 	} = useContext(PlaygroundContext)
 
 	const importMapValue = files[IMPORT_MAP_FILE_NAME].value
@@ -35,7 +35,7 @@ export default function Preview() {
 	const [compiledCode,setCompiledCode] = useState('')
 	const [iframeBlobUrl, setIframeBlobUrl] = useState(getIframeBlobUrl());
 	const [errorContent,setErrorContent] = useState<string>('')
-	
+
 	function getIframeBlobUrl(){
 		const res = iframeRaw.replace(
 			'<script type="importmap"></script>',

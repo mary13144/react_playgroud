@@ -10,6 +10,8 @@ const StyleFileNameItem = styled.div<{$actived:boolean,$isEditing:boolean}>`
 	cursor: pointer;
 	font-family: Arial,serif;
 	border-bottom: 3px solid transparent;
+	color: ${props => props.theme.text};
+	background-color: ${props => props.theme.bg};
 	${props => props.$actived && css`
 		color: ${props.theme.activeText};
 		border-bottom: 3px solid ${props.theme.activeText};
@@ -58,8 +60,8 @@ export interface FIleNameItemProps{
 	actived:boolean,
 	creating:boolean,
 	onClick:()=>void,
-	onRemove:()=>void,
-	onEditComplete:(newName:string)=>void,
+	onRemove?:()=>void,
+	onEditComplete?:(newName:string)=>void,
 	readonly:boolean
 }
 
@@ -101,7 +103,7 @@ export function FIleNameItem(props:FIleNameItemProps){
 			setInputWidth(value.length)
 			return
 		}
-		onEditComplete(name)
+		onEditComplete?.(name)
 	}
 
 	useEffect(() => {
@@ -135,7 +137,7 @@ export function FIleNameItem(props:FIleNameItemProps){
 						cancelText={'取消'}
 						onConfirm={(e)=>{
 							e?.stopPropagation()
-							onRemove()
+							onRemove?.()
 						}}
 					>
 						<StyleSpan>

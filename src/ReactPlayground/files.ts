@@ -4,6 +4,7 @@ import importMap from './template/import-map.json?raw'
 import AppCss from './template/App.css?raw'
 import App from './template/App.tsx?raw'
 import main from './template/main.tsx?raw'
+// import tsconfig from './template/tsconfig.json?raw'
 
 
 // app 文件名
@@ -12,6 +13,8 @@ export const APP_COMPONENT_FILE_NAME = 'App.tsx'
 export const IMPORT_MAP_FILE_NAME = 'import-map.json'
 // 入口文件名
 export const ENTRY_FILE_NAME = 'main.tsx'
+// tsconfig.json
+export const TSCONFIG_FILE_NAME = 'tsconfig.json'
 
 export const initFiles:Files = {
 	[APP_COMPONENT_FILE_NAME]:{
@@ -34,4 +37,9 @@ export const initFiles:Files = {
 		language:getLanguageFromFileName(IMPORT_MAP_FILE_NAME),
 		value:importMap
 	},
+	// [TSCONFIG_FILE_NAME]:{
+	// 	name:TSCONFIG_FILE_NAME,
+	// 	language:getLanguageFromFileName(TSCONFIG_FILE_NAME),
+	// 	value:tsconfig
+	// }
 }

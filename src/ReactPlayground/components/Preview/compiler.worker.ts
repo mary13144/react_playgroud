@@ -1,6 +1,5 @@
 import {Files} from "@/ReactPlayground/PlaygroundContext.tsx";
 import {transform} from "@babel/standalone";
-
 import {ENTRY_FILE_NAME} from "@/ReactPlayground/files.ts";
 import {EditorFile} from "@/ReactPlayground/components/CodeEditor/Editor";
 

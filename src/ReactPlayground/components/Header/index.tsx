@@ -1,11 +1,12 @@
 import logoSvg from '@/ReactPlayground/icons/logo.svg';
 import styled from "styled-components";
-import {DownloadOutlined, MoonOutlined, ShareAltOutlined, SunOutlined} from '@ant-design/icons';
+import {DownloadOutlined, MoonOutlined, ShareAltOutlined, SunOutlined,RedoOutlined} from '@ant-design/icons';
 import {useContext} from "react";
 import {PlaygroundContext} from "@/ReactPlayground/PlaygroundContext.tsx";
 import copy from "copy-to-clipboard";
 import {message} from "antd";
 import {downloadFile} from "@/ReactPlayground/untils";
+import {initFiles} from "@/ReactPlayground/files.ts";
 
 
 const StyleHeader = styled.div`
@@ -50,6 +51,7 @@ export default function Header() {
 	const {
 		theme,
 		files,
+		setFiles,
 		setTheme
 	} = useContext(PlaygroundContext)
 
@@ -64,6 +66,10 @@ export default function Header() {
 		}).catch(e=>{
 			message.error(`下载失败，error:${e}`)
 		})
+	}
+
+	const handleReload = ()=>{
+		setFiles(initFiles)
 	}
 	return (
 		<StyleHeader>
@@ -86,9 +92,15 @@ export default function Header() {
 					)
 				}
 				<ShareAltOutlined
+					title={'分享'}
 					onClick={handleShare}
 				/>
+				<RedoOutlined
+					title={'重置代码'}
+					onClick={handleReload}
+				/>
 				<DownloadOutlined
+					title={'下载代码'}
 					onClick={handleDown}
 				/>
 			</StyleRight>

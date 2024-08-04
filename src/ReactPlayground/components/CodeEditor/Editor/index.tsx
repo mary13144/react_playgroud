@@ -4,33 +4,33 @@ import {createATA} from "./ata.ts";
 import {useContext} from "react";
 import {PlaygroundContext} from "@/ReactPlayground/PlaygroundContext.tsx";
 
-export interface EditorFile{
-	name:string;
-	value:string;
-	language:string;
+
+export interface EditorFile {
+	name: string;
+	value: string;
+	language: string;
 }
 
-interface Props{
-	file:EditorFile;
-	onChange?:EditorProps['onChange'];
-	options?:editor.IStandaloneEditorConstructionOptions;
+interface Props {
+	file: EditorFile;
+	onChange?: EditorProps['onChange'];
+	options?: editor.IStandaloneEditorConstructionOptions;
 }
 
-export default function Editor(props:Props) {
+export default function Editor(props: Props) {
 
-	const {file,onChange,options} = props
+	const {file, onChange, options} = props
 
 	const {theme} = useContext(PlaygroundContext)
 
 	const handleEditorMount:OnMount = (editor:editor.IStandaloneCodeEditor,monaco:Monaco)=>{
-
 		editor.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.KeyJ, () => {
 			editor.getAction('editor.action.formatDocument')?.run()
 		});
 
 		monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
 			jsx:monaco.languages.typescript.JsxEmit.Preserve,
-			esModuleInterop:true
+			esModuleInterop: true,
 		})
 
 		const ata = createATA((code, path)=>{
